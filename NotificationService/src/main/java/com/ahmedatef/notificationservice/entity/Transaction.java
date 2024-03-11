@@ -1,6 +1,6 @@
 package com.ahmedatef.notificationservice.entity;
 
-import com.ahmedatef.bankingservice.enums.TransactionStatus;
+import com.ahmedatef.notificationservice.enums.TransactionStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

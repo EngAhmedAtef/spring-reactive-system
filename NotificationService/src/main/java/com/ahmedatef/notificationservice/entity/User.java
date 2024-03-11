@@ -1,6 +1,6 @@
 package com.ahmedatef.notificationservice.entity;
 
-import com.ahmedatef.bankingservice.enums.Gender;
+import com.ahmedatef.notificationservice.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
