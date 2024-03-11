@@ -1,6 +1,5 @@
 package com.ahmedatef.notificationservice.service;
 
-import com.ahmedatef.notificationservice.common.ControllerResponse;
 import com.ahmedatef.notificationservice.common.Mapper;
 import com.ahmedatef.notificationservice.dto.TransactionDTO;
 import com.ahmedatef.notificationservice.entity.Transaction;
@@ -13,8 +12,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class UserNotificationService {
@@ -22,7 +19,9 @@ public class UserNotificationService {
     private final UserRepository userRepository;
     private final JavaMailSender javaMailSender;
 
-    public ControllerResponse<TransactionDTO> notify(TransactionDTO dto) {
+    public TransactionDTO notify(TransactionDTO dto) {
+        Transaction transaction = Mapper.map(dto, Transaction.class);
+
         if (dto.getTransactionStatus().equals(TransactionStatus.FRAUDULENT)) {
             User user = userRepository.findUserByCardId(dto.getCardId());
 
@@ -33,11 +32,12 @@ public class UserNotificationService {
             message.setText("An attempt has been made to pay " + dto.getStoreName() + " from your card " + dto.getCardId() + " in the country " + dto.getTransactionLocation() + ".");
 
             javaMailSender.send(message);
-            dto.setTransactionStatus(TransactionStatus.FRAUDULENT_NOTIFY_SUCCESS);
+            transaction.setTransactionStatus(TransactionStatus.FRAUDULENT_NOTIFY_SUCCESS);
+            transaction.setUser(user);
         } else
             dto.setTransactionStatus(TransactionStatus.FRAUDULENT_NOTIFY_FAILURE);
 
-        Transaction savedTransaction = transactionRepository.save(Mapper.map(dto, Transaction.class));
-        return ControllerResponse.of(List.of(Mapper.map(savedTransaction, TransactionDTO.class)));
+        Transaction savedTransaction = transactionRepository.save(transaction);
+        return Mapper.map(savedTransaction, TransactionDTO.class);
     }
 }
