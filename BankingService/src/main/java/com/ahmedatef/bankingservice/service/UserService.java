@@ -66,4 +66,8 @@ public class UserService {
         return repository.save(dbUser);
     }
 
+    public User findByCardId(String cardId) {
+        return repository.findUserByCardId(cardId);
+    }
+
 }

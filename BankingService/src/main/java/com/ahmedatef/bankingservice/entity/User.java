@@ -34,6 +34,8 @@ public class User {
     private Gender gender;
     @Column(name = "mobile")
     private String mobile;
+    @Column(name = "card_id")
+    private String cardId;
     @Column(name = "account_number")
     private String accountNumber;
     @Column(name = "account_type")

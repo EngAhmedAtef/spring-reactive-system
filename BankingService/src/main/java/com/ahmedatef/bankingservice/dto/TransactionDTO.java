@@ -1,10 +1,7 @@
 package com.ahmedatef.bankingservice.dto;
 
 import com.ahmedatef.bankingservice.enums.TransactionStatus;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Date;
 
@@ -12,6 +9,7 @@ import java.sql.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class TransactionDTO {
     private int transactionId;
     private Date transactionDate;
