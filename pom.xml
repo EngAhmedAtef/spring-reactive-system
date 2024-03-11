@@ -22,8 +22,10 @@
             <name>Ahmed Atef</name>
         </developer>
     </developers>
+
     <modules>
         <module>BankingService</module>
+        <module>NotificationService</module>
     </modules>
 
     <dependencies>

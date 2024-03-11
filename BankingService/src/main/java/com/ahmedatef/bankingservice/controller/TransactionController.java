@@ -5,18 +5,17 @@ import com.ahmedatef.bankingservice.dto.TransactionDTO;
 import com.ahmedatef.bankingservice.enums.TransactionStatus;
 import com.ahmedatef.bankingservice.service.TransactionService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("banking/transactions")
+@RequestMapping("transactions")
 @RequiredArgsConstructor
+@Slf4j
 public class TransactionController {
     private final TransactionService service;
-    private static final Logger LOGGER = LoggerFactory.getLogger(TransactionController.class);
 
     @GetMapping
     public ResponseEntity<ControllerResponse<TransactionDTO>> getAllTransactions() {
@@ -32,7 +31,7 @@ public class TransactionController {
 
     @PostMapping("process")
     public ResponseEntity<ControllerResponse<TransactionDTO>> process(@RequestBody TransactionDTO dto) {
-        LOGGER.info("Process transaction with details: {}", dto);
+        log.info("Process transaction with details: {}", dto);
         ControllerResponse<TransactionDTO> processedTransactionResponse = service.process(dto);
         if (processedTransactionResponse.getData().get(0).getTransactionStatus().equals(TransactionStatus.SUCCESS))
             return new ResponseEntity<>(processedTransactionResponse, HttpStatus.OK);

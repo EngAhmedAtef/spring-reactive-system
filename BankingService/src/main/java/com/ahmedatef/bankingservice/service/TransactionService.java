@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TransactionService {
-    private static final String USER_NOTIFICATION_SERVICE_URL = "http://localhost:8081/notify/fraudulent-transaction";
+    private static final String USER_NOTIFICATION_SERVICE_URL = "http://localhost:8081/notification/fraudulent-transaction";
     private static final String REPORTING_SERVICE_URL = "http://localhost:8082/reporting/report";
     private static final String ACCOUNT_MANAGER_SERVICE_URL = "http://localhost:8083/account-management/process";
 
