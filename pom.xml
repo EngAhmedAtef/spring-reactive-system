@@ -27,6 +27,7 @@
         <module>BankingService</module>
         <module>NotificationService</module>
         <module>ReportingService</module>
+        <module>AccountManagementService</module>
     </modules>
 
     <dependencies>
