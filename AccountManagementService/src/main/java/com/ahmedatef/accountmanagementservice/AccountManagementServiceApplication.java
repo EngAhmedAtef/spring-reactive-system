@@ -1,4 +1,4 @@
-package com.ahmedatef;
+package com.ahmedatef.accountmanagementservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
